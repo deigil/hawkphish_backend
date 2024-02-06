@@ -19,13 +19,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-96hjkdddan8=(r^_8d@!$5+f1zery%@xw^g!6lhg76g3cq@bfk'
+from dotenv import load_dotenv
+import os
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Load environment variables from .env file
+load_dotenv()
 
-ALLOWED_HOSTS = []
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+DEBUG = os.getenv('DEBUG')
+
+ALLOWED_HOSTS = ['18.223.137.231',
+                 '127.0.0.1',
+                 'ec2-18-223-137-231.us-east-2.compute.amazonaws.com',
+                 'localhost',
+                 '0.0.0.0',
+                 
+                ]
 
 
 # Application definition
@@ -37,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'database',
 ]
 
 MIDDLEWARE = [
