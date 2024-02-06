@@ -11,4 +11,5 @@ media/
 static/
 webhook_receiver.py
 checks.sh
-checks.log
+server.log
+webhook.log
