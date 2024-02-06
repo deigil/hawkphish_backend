@@ -10,4 +10,5 @@ __pycache__/
 media/
 static/
 webhook_receiver.py
-check_webhook.sh
+checks.sh
+checks.log
