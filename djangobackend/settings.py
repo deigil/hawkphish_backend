@@ -28,12 +28,12 @@ load_dotenv()
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['18.223.137.231',
+ALLOWED_HOSTS = [os.getenv('PUBLIC_IP'),
                  '127.0.0.1',
-                 'ec2-18-223-137-231.us-east-2.compute.amazonaws.com',
+                 os.getenv('PUBLIC_DNS'),
                  'localhost',
                  '0.0.0.0',
-                 
+
                 ]
 
 
