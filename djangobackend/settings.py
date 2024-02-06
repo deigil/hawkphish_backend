@@ -28,14 +28,13 @@ load_dotenv()
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = [os.getenv('PUBLIC_IP'),
-                 '127.0.0.1',
-                 os.getenv('PUBLIC_DNS'),
-                 'localhost',
-                 '0.0.0.0',
-
-                ]
-
+ALLOWED_HOSTS = [
+    os.getenv('PUBLIC_IP'),
+    os.getenv('PUBLIC_DNS'),
+    '127.0.0.1',
+    'localhost',
+    '0.0.0.0',
+]
 
 # Application definition
 
