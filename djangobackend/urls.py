@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from database.views import add_link
+from website.urls import display_links
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/add_link/', add_link, name='add_link'),
+    path('website/', display_links, name= 'display_links'),
 ]

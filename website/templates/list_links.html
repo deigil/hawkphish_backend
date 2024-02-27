@@ -1,0 +1,42 @@
+<!-- templates/website/links_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Links List</title>
+</head>
+<body>
+    <h1>Links List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Domain URL</th>
+                <th>Domain Title</th>
+                <th>Time Accessed</th>
+                <th>Domain Rating</th>
+                <th>No HTTPS</th>
+                <th>Shortened</th>
+                <th>At Symbol</th>
+                <th>Bad Extension</th>
+                <th>Clicked Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in links %}
+                <tr>
+                    <td>{{ link.domainURL }}</td>
+                    <td>{{ link.domainTitle }}</td>
+                    <td>{{ link.timeAccessed }}</td>
+                    <td>{{ link.domainRating }}</td>
+                    <td>{{ link.reasonNoHttps }}</td>
+                    <td>{{ link.reasonShortened }}</td>
+                    <td>{{ link.reasonAtSymbol }}</td>
+                    <td>{{ link.reasonBadExtension }}</td>
+                    <td>{{ link.clicked_count }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
