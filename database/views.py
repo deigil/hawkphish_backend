@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework import serializers
 
+
+import json
 from database.models import Links
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -51,6 +53,11 @@ class LinkCreateView(APIView):
     def post(self, request):
         # try:
             # Try to deserialize the incoming JSON data
+
+            parsed = json.loads(request)
+
+            print("Name:", parsed['domainURL'])
+
             serializer = LinkSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)  # Raise an exception for invalid data
 
