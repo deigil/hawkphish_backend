@@ -49,7 +49,7 @@ class LinkCreateView(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        try:
+        # try:
             # Try to deserialize the incoming JSON data
             serializer = LinkSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)  # Raise an exception for invalid data
@@ -61,11 +61,11 @@ class LinkCreateView(APIView):
             print("Received data:", request.data)
 
             return Response(serializer.data, status=201)
-        except serializers.ValidationError as e:
-            # Handle validation errors
-            print("Validation Error:", e)
-            return Response({'error': 'Validation Error'}, status=400)
-        except Exception as e:
-            # Handle other exceptions
-            print("Error:", e)
-            return Response({'error': 'An error occurred'}, status=500)
+        # except serializers.ValidationError as e:
+        #     # Handle validation errors
+        #     print("Validation Error:", e)
+        #     return Response({'error': 'Validation Error'}, status=400)
+        # except Exception as e:
+        #     # Handle other exceptions
+        #     print("Error:", e)
+        #     return Response({'error': 'An error occurred'}, status=500)
