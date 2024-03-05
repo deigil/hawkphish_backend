@@ -54,7 +54,7 @@ class LinkCreateView(APIView):
         # try:
             # Try to deserialize the incoming JSON data
 
-            parsed = json.loads(request)
+            parsed = json.loads(request.body)
 
             print(parsed)
 
