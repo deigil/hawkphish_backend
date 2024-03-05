@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Replace the following variables with your actual values
+PROJECT_DIR=/home/ubuntu/djangobackend/
+WEBHOOK_SCRIPT=webhook_receiver.py
+SERVER_SCRIPT=manage.py
+S_LOG=server.log
+W_LOG=webhook.log
+
+# Change directory to your project directory
+cd "$PROJECT_DIR"
+
+# Check if the webhook receiver is running
+if ! pgrep -f "$WEBHOOK_SCRIPT" > /dev/null ; then
+    # Restart the webhook receiver
+    python3 "$WEBHOOK_SCRIPT" > "$W_LOG" 2>&1 &
+fi
+
+# Check if the server is running
+if ! pgrep -f "$SERVER_SCRIPT" > /dev/null ; then
+    # Migrate
+    python3 "$SERVER_SCRIPT" migrate > "$S_LOG" 2>&1
+    # Restart the server
+    python3 "$SERVER_SCRIPT" runserver 0.0.0.0:8000 >> "$S_LOG" 2>&1 &
+fi
