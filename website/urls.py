@@ -5,5 +5,5 @@ from . import views
 from django.conf import settings
 
 urlpatterns = [
-    path('links/', display_links, name='display_links'),
+    # path('links/', display_links, name='display_links'),
 ]

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework import serializers
 
 from database.models import Links
 from rest_framework.response import Response
@@ -48,8 +49,23 @@ class LinkCreateView(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = Links(data=request.data)
-        if serializer.is_valid():
+        try:
+            # Try to deserialize the incoming JSON data
+            serializer = LinkSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)  # Raise an exception for invalid data
+
+            # If valid, save the data
             serializer.save()
+
+            # Print the received data
+            print("Received data:", request.data)
+
             return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+        except serializers.ValidationError as e:
+            # Handle validation errors
+            print("Validation Error:", e)
+            return Response({'error': 'Validation Error'}, status=400)
+        except Exception as e:
+            # Handle other exceptions
+            print("Error:", e)
+            return Response({'error': 'An error occurred'}, status=500)
