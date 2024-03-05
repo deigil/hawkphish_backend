@@ -1,28 +1,55 @@
 from django.shortcuts import render
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
-import json
+
 from database.models import Links
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from .serializers import LinkSerializer
 
-@csrf_exempt  # For simplicity; use CSRF protection in production
-@require_POST
-def add_link(request):
-    try:
-        data = json.loads(request.body)
-        url = data.get('url')
-        # Additional parameters like shortened_url, suspicious_domain, no_https can be extracted similarly
+@api_view(['GET'])
+def getData(request):
+    app = Links.objects.all()
+    serializer = LinkSerializer(app, many=True)
+    return Response(serializer.data)
 
-        # Check if the link already exists in the database
-        link, created = Links.objects.get_or_create(url = url)
+@api_view(['POST'])
+def postData(request):
+    serializer = LinkSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
 
-        if not created:
-            # If the link already exists, increment the clicked_count
-            link.clicked_count += 1
-            link.save()
-        return JsonResponse({'message': 'Link added successfully'})
+# @csrf_exempt  # For simplicity; use CSRF protection in production
+# @require_POST
+# def add_link(request):
+#     try:
+#         data = json.loads(request.body)
+#         url = data.get('url')
+#         # Additional parameters like shortened_url, suspicious_domain, no_https can be extracted similarly
 
-    except json.JSONDecodeError as e:
-        return JsonResponse({'error': 'Invalid JSON data'}, status=400)
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+#         # Check if the link already exists in the database
+#         link, created = Links.objects.get_or_create(url = url)
+
+#         if not created:
+#             # If the link already exists, increment the clicked_count
+#             link.clicked_count += 1
+#             link.save()
+#         return JsonResponse({'message': 'Link added successfully'})
+
+#     except json.JSONDecodeError as e:
+#         return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+#     except Exception as e:
+#         return JsonResponse({'error': str(e)}, status=500)
+
+class LinkCreateView(APIView):
+    def get(self, request):
+        network = Links.objects.all()
+        serializer = Links(network, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = Links(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
