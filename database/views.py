@@ -54,15 +54,15 @@ class LinkCreateView(APIView):
         # try:
             # Try to deserialize the incoming JSON data
 
-            parsed = json.loads(request)
+            # parsed = json.loads(request)
 
-            print(parsed)
+            # print(parsed)
 
             serializer = LinkSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)  # Raise an exception for invalid data
 
             # If valid, save the data
-            # serializer.save()
+            serializer.save()
 
             # Print the received data
             print("Received data:", request.data)

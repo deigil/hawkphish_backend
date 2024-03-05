@@ -1,6 +1,6 @@
 from django.db import models
 class Links(models.Model):
-    domainURL = models.URLField()
+    domainURL = models.CharField(max_length = 255)
 
     domainTitle = models.CharField(max_length = 255)
 
