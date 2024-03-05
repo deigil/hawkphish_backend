@@ -56,7 +56,7 @@ class LinkCreateView(APIView):
 
             parsed = json.loads(request)
 
-            print("Name:", parsed['domainURL'])
+            print(parsed)
 
             serializer = LinkSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)  # Raise an exception for invalid data
