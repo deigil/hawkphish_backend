@@ -55,7 +55,7 @@ class LinkCreateView(APIView):
             serializer.is_valid(raise_exception=True)  # Raise an exception for invalid data
 
             # If valid, save the data
-            serializer.save()
+            # serializer.save()
 
             # Print the received data
             print("Received data:", request.data)
