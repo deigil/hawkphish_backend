@@ -26,30 +26,6 @@ load_dotenv()
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
-import watchdog
-# Define the watchdog observer
-observer = watchdog.Observer()
-
-# Define the paths to watch
-paths = ['myapp/templates', 'myapp/static']
-
-# Watch for changes in the paths
-observer.watch(paths)
-
-# Define a function to call when changes are detected
-def on_change(event):
-    # Reload the app when a change is detected
-    print('Reloading app due to change in', event.path)
-    # You can also use this opportunity to update your database
-    # or perform any other action that needs to be taken
-    # when the app is reloaded
-
-# Set up the observer
-observer.schedule(on_change, paths)
-
-# Start the observer
-observer.start()
-
 ALLOWED_HOSTS = [
     os.getenv('PUBLIC_IP'),
     os.getenv('PUBLIC_DNS'),
