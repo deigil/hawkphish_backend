@@ -9,18 +9,18 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from .serializers import LinkSerializer
 
-# @api_view(['GET'])
-# def getData(request):
-#     app = Links.objects.all()
-#     serializer = LinkSerializer(app, many=True)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def getData(request):
+    app = Links.objects.all()
+    serializer = LinkSerializer(app, many=True)
+    return Response(serializer.data)
 
-# @api_view(['POST'])
-# def postData(request):
-#     serializer = LinkSerializer(data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#     return Response(serializer.data)
+@api_view(['POST'])
+def postData(request):
+    serializer = LinkSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
 
 # @csrf_exempt  # For simplicity; use CSRF protection in production
 # @require_POST
@@ -60,7 +60,7 @@ class LinksAPI(APIView):
         # network = Links.objects.all()
         # serializer = Links(network, many=True)
         # return Response(serializer.data)
-        
+
     def post(self, request):
         # Parse the incoming JSON data
         try:
