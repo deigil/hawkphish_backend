@@ -90,6 +90,21 @@ class LinksAPI(APIView):
 
         # Return success response
         return Response({"message": "Link added successfully"}, status=201)
+
+    def post(self, request):
+        # Deserialize the incoming JSON data using the serializer
+        serializer = LinkSerializer(data=request.data)
+        
+        # Check if the data is valid
+        if serializer.is_valid():
+            # If valid, save the data to the database
+            serializer.save()
+            # Return a success response with the serialized data
+            return Response(serializer.data, status=201)
+        else:
+            # If data is invalid, return error response with serializer errors
+            return Response(serializer.errors, status=400)
+
     # def post(self, request):
     #     # try:
     #         # Try to deserialize the incoming JSON data
