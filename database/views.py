@@ -61,35 +61,35 @@ class LinksAPI(APIView):
         # serializer = Links(network, many=True)
         # return Response(serializer.data)
 
-    def post(self, request):
-        # Parse the incoming JSON data
-        try:
-            data = json.loads(request.body)
-        except json.JSONDecodeError:
-            return Response({"error": "Invalid JSON data"}, status=400)
+    # def post(self, request):
+    #     # Parse the incoming JSON data
+    #     try:
+    #         data = json.loads(request.body)
+    #     except json.JSONDecodeError:
+    #         return Response({"error": "Invalid JSON data"}, status=400)
 
-        # Check if required fields are present
-        required_fields = ['domainURL', 'domainTitle', 'timeAccessed', 'domainRating']
-        for field in required_fields:
-            if field not in data:
-                return Response({"error": f"Missing required field: {field}"}, status=400)
+    #     # Check if required fields are present
+    #     required_fields = ['domainURL', 'domainTitle', 'timeAccessed', 'domainRating']
+    #     for field in required_fields:
+    #         if field not in data:
+    #             return Response({"error": f"Missing required field: {field}"}, status=400)
 
-        # Add the link to the database
-        link = Links(
-            domainURL=data['domainURL'],
-            domainTitle=data['domainTitle'],
-            timeAccessed=data['timeAccessed'],
-            domainRating=data['domainRating'],
-            reasonNoHttps=data.get('reasonNoHttps'),
-            reasonShortened=data.get('reasonShortened'),
-            reasonAtSymbol=data.get('reasonAtSymbol'),
-            reasonBadExtension=data.get('reasonBadExtension'),
-            clicked_count=data.get('clicked_count', 1)
-        )
-        link.save()
+    #     # Add the link to the database
+    #     link = Links(
+    #         domainURL=data['domainURL'],
+    #         domainTitle=data['domainTitle'],
+    #         timeAccessed=data['timeAccessed'],
+    #         domainRating=data['domainRating'],
+    #         reasonNoHttps=data.get('reasonNoHttps'),
+    #         reasonShortened=data.get('reasonShortened'),
+    #         reasonAtSymbol=data.get('reasonAtSymbol'),
+    #         reasonBadExtension=data.get('reasonBadExtension'),
+    #         clicked_count=data.get('clicked_count')
+    #     )
+    #     link.save()
 
-        # Return success response
-        return Response({"message": "Link added successfully"}, status=201)
+    #     # Return success response
+    #     return Response({"message": "Link added successfully"}, status=201)
 
     def post(self, request):
         # Deserialize the incoming JSON data using the serializer
