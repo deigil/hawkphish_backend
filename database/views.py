@@ -60,8 +60,7 @@ class LinksAPI(APIView):
         # network = Links.objects.all()
         # serializer = Links(network, many=True)
         # return Response(serializer.data)
-
-class LinksAPI(APIView):
+        
     def post(self, request):
         # Parse the incoming JSON data
         try:
@@ -81,11 +80,11 @@ class LinksAPI(APIView):
             domainTitle=data['domainTitle'],
             timeAccessed=data['timeAccessed'],
             domainRating=data['domainRating'],
-            reasonNoHttps=data.get('reasonNoHttps', False),
-            reasonShortened=data.get('reasonShortened', False),
-            reasonAtSymbol=data.get('reasonAtSymbol', False),
-            reasonBadExtension=data.get('reasonBadExtension', False),
-            clicked_count=data.get('clicked_count', 0)
+            reasonNoHttps=data.get('reasonNoHttps'),
+            reasonShortened=data.get('reasonShortened'),
+            reasonAtSymbol=data.get('reasonAtSymbol'),
+            reasonBadExtension=data.get('reasonBadExtension'),
+            clicked_count=data.get('clicked_count', 1)
         )
         link.save()
 

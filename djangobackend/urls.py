@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from database.views import add_link
+# from database.views import LinksAPI
+from database import views
 from website.urls import display_links
 
 urlpatterns = [
@@ -24,4 +25,5 @@ urlpatterns = [
     # path('api/add_link/', add_link, name='add_link'),
     path('website/', display_links, name= 'display_links'),
     path('', include('database.urls')),
+    path('frontendAPI/', views.LinksAPI.as_view()),
 ]
