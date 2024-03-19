@@ -13,7 +13,7 @@ class Links(models.Model):
     reasonAtSymbol = models.BooleanField(default = False)
     reasonBadExtension = models.BooleanField(default = False)
 
-    clicked_count = models.PositiveIntegerField(default = 0)
+    clicked_count = models.IntegerField(default = 1)
 
     def __str__(self):
         return self.domainURL
