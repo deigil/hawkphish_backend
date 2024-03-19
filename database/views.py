@@ -9,18 +9,18 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from .serializers import LinkSerializer
 
-@api_view(['GET'])
-def getData(request):
-    app = Links.objects.all()
-    serializer = LinkSerializer(app, many=True)
-    return Response(serializer.data)
+# @api_view(['GET'])
+# def getData(request):
+#     app = Links.objects.all()
+#     serializer = LinkSerializer(app, many=True)
+#     return Response(serializer.data)
 
-@api_view(['POST'])
-def postData(request):
-    serializer = LinkSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+# @api_view(['POST'])
+# def postData(request):
+#     serializer = LinkSerializer(data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#     return Response(serializer.data)
 
 # @csrf_exempt  # For simplicity; use CSRF protection in production
 # @require_POST
@@ -44,30 +44,73 @@ def postData(request):
 #     except Exception as e:
 #         return JsonResponse({'error': str(e)}, status=500)
 
-class LinkCreateView(APIView):
+class LinksAPI(APIView):
     def get(self, request):
-        network = Links.objects.all()
-        serializer = Links(network, many=True)
-        return Response(serializer.data)
+        link_url = request.GET.get('domainURL', None)
+        if not link_url:
+            return Response({"error": "Please provide a domainURL in the query parameters"}, status=400)
+        try:
+            # Try to retrieve the link from the database
+            link = Links.objects.get(domainURL = link_url)
+            serializer = LinkSerializer(link)
+            return Response(serializer.data, status=200)
+        except Links.DoesNotExist:
+            return Response({"message": "Link not found"}, status=400)
 
+        # network = Links.objects.all()
+        # serializer = Links(network, many=True)
+        # return Response(serializer.data)
+
+class LinksAPI(APIView):
     def post(self, request):
-        # try:
-            # Try to deserialize the incoming JSON data
+        # Parse the incoming JSON data
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            return Response({"error": "Invalid JSON data"}, status=400)
 
-            # parsed = json.loads(request)
+        # Check if required fields are present
+        required_fields = ['domainURL', 'domainTitle', 'timeAccessed', 'domainRating']
+        for field in required_fields:
+            if field not in data:
+                return Response({"error": f"Missing required field: {field}"}, status=400)
 
-            # print(parsed)
+        # Add the link to the database
+        link = Links(
+            domainURL=data['domainURL'],
+            domainTitle=data['domainTitle'],
+            timeAccessed=data['timeAccessed'],
+            domainRating=data['domainRating'],
+            reasonNoHttps=data.get('reasonNoHttps', False),
+            reasonShortened=data.get('reasonShortened', False),
+            reasonAtSymbol=data.get('reasonAtSymbol', False),
+            reasonBadExtension=data.get('reasonBadExtension', False),
+            clicked_count=data.get('clicked_count', 0)
+        )
+        link.save()
 
-            serializer = LinkSerializer(data=request.data)
-            serializer.is_valid(raise_exception=True)  # Raise an exception for invalid data
+        # Return success response
+        return Response({"message": "Link added successfully"}, status=201)
+    # def post(self, request):
+    #     # try:
+    #         # Try to deserialize the incoming JSON data
 
-            # If valid, save the data
-            serializer.save()
+    #         # parsed = json.loads(request)
 
-            # Print the received data
-            print("Received data:", request.data)
+    #         # print(parsed)
 
-            return Response(serializer.data, status=201)
+    #         serializer = LinkSerializer(data=request.data)
+    #         if serializer.is_valid(raise_exception=True):  # Raise an exception for invalid data
+
+    #             # If valid, save the data
+    #             serializer.save()
+
+    #             # Print the received data
+    #             print("Received data:", request.data)
+    #             return Response(serializer.data, status=201)
+            
+    #         print("Received data:", request.data)
+    #         return Response(serializer.errors, status=400)
         # except serializers.ValidationError as e:
         #     # Handle validation errors
         #     print("Validation Error:", e)

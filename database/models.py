@@ -6,7 +6,7 @@ class Links(models.Model):
 
     timeAccessed = models.CharField(max_length = 255)
 
-    domainRating = models.PositiveIntegerField(default = 0)
+    domainRating = models.IntegerField()
 
     reasonNoHttps = models.BooleanField(default = False)
     reasonShortened = models.BooleanField(default = False)

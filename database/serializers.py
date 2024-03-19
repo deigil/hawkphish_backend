@@ -6,4 +6,4 @@ class LinkSerializer(serializers.ModelSerializer):
         model = Links
         fields = ['domainURL','domainTitle','timeAccessed','domainRating',
                   'reasonNoHttps','reasonShortened','reasonAtSymbol',
-                  'reasonBadExtension','clicked_count']
+                  'reasonBadExtension', 'clicked_count']
