@@ -65,14 +65,16 @@ class LinksAPI(APIView):
         # Parse the incoming JSON data
         try:
             data = json.loads(request.body)
+            print(data)
+            # parsed = json.loads(request)
         except json.JSONDecodeError:
             return Response({"error": "Invalid JSON data"}, status=400)
 
         # Check if required fields are present
-        required_fields = ['domainURL', 'domainTitle', 'timeAccessed', 'domainRating']
-        for field in required_fields:
-            if field not in data:
-                return Response({"error": f"Missing required field: {field}"}, status=400)
+        # required_fields = ['domainURL', 'domainTitle', 'timeAccessed', 'domainRating']
+        # for field in required_fields:
+        #     if field not in data:
+        #         return Response({"error": f"Missing required field: {field}"}, status=400)
 
         # Add the link to the database
         link = Links(
