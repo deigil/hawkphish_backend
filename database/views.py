@@ -80,7 +80,7 @@ class LinksAPI(APIView):
         link = Links(
             domainURL = data['domainURL'],
             domainTitle = data['domainTitle'],
-            # timeAccessed = data['timeAccessed'],
+            timeAccessed = data['eventTime'],
             domainRating = data['domainRating'],
             reasonNoHttps = data.get('reasonNoHttps'),
             reasonShortened = data.get('reasonShortened'),
