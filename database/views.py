@@ -42,6 +42,7 @@ class LinksAPI(APIView):
         if existing_link:
             # If an entry exists, increment clicked_count by 1
             existing_link.clicked_count += 1
+            existing_link.timeAccessed = data['timeAccessed']
             existing_link.save()
         else:
             # If no entry exists, create a new one
@@ -54,7 +55,9 @@ class LinksAPI(APIView):
                 reasonShortened=data.get('reasonShortened'),
                 reasonAtSymbol=data.get('reasonAtSymbol'),
                 reasonBadExtension=data.get('reasonBadExtension'),
-                clicked_count=data.get('clicked_count', 1)  # Start clicked_count at 1 for new entries
+                reasonRedirect=data.get('reasonRedirect'),
+                reasonDashes=data.get('reasonDashes'),
+                clicked_count = 1  # Start clicked_count at 1 for new entries
             )
             link.save()
 
