@@ -4,3 +4,6 @@ from database.models import Links
 def display_links(request):
     links = Links.objects.all()  # Retrieve all instances of the Links model
     return render(request, 'list_links.html', {'links': links})
+
+def homepage(request):
+    return render(request, 'homepage.html')
