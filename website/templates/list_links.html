@@ -19,6 +19,8 @@
                 <th>Shortened</th>
                 <th>At Symbol</th>
                 <th>Bad Extension</th>
+                <th>Redirect</th>
+                <th>Dashes</th>
                 <th>Clicked Count</th>
             </tr>
         </thead>
@@ -33,6 +35,8 @@
                     <td>{{ link.reasonShortened }}</td>
                     <td>{{ link.reasonAtSymbol }}</td>
                     <td>{{ link.reasonBadExtension }}</td>
+                    <td>{{ link.reasonRedirect }}</td>
+                    <td>{{ link.reasonDashes }}</td>
                     <td>{{ link.clicked_count }}</td>
                 </tr>
             {% endfor %}

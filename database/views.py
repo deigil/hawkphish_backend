@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 
 import json
-from database.models import Links
+from database.models import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -37,7 +37,7 @@ class LinksAPI(APIView):
         #     if field not in data:
         #         return Response({"error": f"Missing required field: {field}"}, status=400)
 
-        existing_link = Links.objects.filter(domainURL=data['domainURL']).first()
+        existing_link = updatedLink.objects.filter(domainURL=data['domainURL']).first()
 
         if existing_link:
             # If an entry exists, increment clicked_count by 1
@@ -46,7 +46,7 @@ class LinksAPI(APIView):
             existing_link.save()
         else:
             # If no entry exists, create a new one
-            link = Links(
+            link = updatedLink(
                 domainURL=data['domainURL'],
                 domainTitle=data['domainTitle'],
                 timeAccessed=data['timeAccessed'],
