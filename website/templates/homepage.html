@@ -1,11 +1,15 @@
+{% load static %}
+
 <!-- templates/homepage.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Homepage</title>
+    <link rel="stylesheet" href="{% static 'website/css/styles.css' %}">
 </head>
 <body>
     <h1>Welcome to My Website</h1>
+    <p><a href="/database">View Database</a></p>
 </body>
 </html>

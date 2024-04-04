@@ -7,3 +7,4 @@ def display_links(request):
 
 def homepage(request):
     return render(request, 'homepage.html')
+
