@@ -4,9 +4,9 @@ from .views import display_links
 from . import views
 from django.conf import settings
 from .views import homepage
+from django.conf.urls.static import static
 
 urlpatterns = [
     # path('links/', display_links, name='display_links'),
     path('', homepage, name='homepage'),
-    path('static/<path:path>', settings.STATIC_URL + '/<path:path>'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

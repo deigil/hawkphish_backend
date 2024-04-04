@@ -1,15 +1,42 @@
 {% load static %}
 
-<!-- templates/homepage.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawkphish Backend</title>
     <link rel="stylesheet" href="{% static 'website/css/styles.css' %}">
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p><a href="/database">View Database</a></p>
+    <div class="wrapper">
+        <nav>
+            <div class="container">
+                <h1><a href="/">My Website</a></h1>
+                <ul>
+                    <li><a href="/database">Database</a></li>
+                    <li><a href="/statistics">Statistics</a></li>
+                    <li><a href="/admin">Admin Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <section id="hero">
+            <div class="container">
+                <h2>Welcome to Hawkphish Extension</h2>
+                <p>Learn how our Chrome extension protects individuals from malicious websites.</p>
+            </div>
+        </section>
+        <section id="features">
+            <div class="container">
+                <h2>Key Features</h2>
+                <!-- Add images and descriptions of your Chrome extension features -->
+            </div>
+        </section>
+    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 My Website. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
