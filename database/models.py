@@ -38,6 +38,7 @@ class updatedLink(models.Model):
 
     def __str__(self):
         return self.domainURL
+
 # import requests
 
 # # Create the article data
