@@ -8,7 +8,6 @@ __pycache__/
 .vscode/
 __pycache__/
 media/
-static/
 webhook_receiver.py
 checks.sh
 server.log
