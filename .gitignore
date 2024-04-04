@@ -12,3 +12,4 @@ webhook_receiver.py
 checks.sh
 server.log
 webhook.log
+venv/
