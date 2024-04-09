@@ -5,7 +5,8 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: #40415a;
+  color: #fff
 }
 
 .wrapper {
@@ -23,13 +24,12 @@ body {
 .container {
   width: 90%; /* Adjust container width to fit screen */
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px;
   overflow-x: auto; /* Add horizontal scrolling if needed */
 }
 
 nav {
-  background-color: #333;
-  color: #fff;
+  background-color: #33334d;
   padding: 10px 0;
 }
 
@@ -49,12 +49,20 @@ nav ul li:last-child {
 }
 
 nav a {
+  color: #d4d5e4;
+}
+
+.nav-h1 {
   color: #fff;
   text-decoration: none;
 }
 
 nav a:hover {
-  color: #ddd;
+  color: #fff;
+}
+
+.nav-h1:hover {
+  color: #d4d5e4;
 }
 
 #hero {
@@ -63,7 +71,8 @@ nav a:hover {
 }
 
 #hero2 {
-  padding: 25px 0;
+  padding-top: 20px;
+  padding-bottom: 5px;
   text-align: center;
 }
 
@@ -73,8 +82,8 @@ nav a:hover {
 }
 
 .table-container {
-  width: calc(100% - 25px);
-  padding: 10px;
+  width: calc(100% - 10px);
+  padding: 5px;
   box-sizing: border-box;
 }
 
@@ -85,25 +94,38 @@ nav a:hover {
 }
 
 
-.data {
-  padding: 8px;
+.data, th {
+  padding: 10px;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1.5px solid #ddd;
   overflow: hidden; /* Hide overflowing text */
   text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
   white-space: nowrap; /* Prevent text from wrapping */
 }
 
-/* Show full text on hover */
-.data:hover {
-  white-space: normal; /* Display full text on hover */
-  overflow: visible;
-  text-overflow: initial;
+td {
+  padding-top: 10px;
+  color: #d4d5e4;
+}
+
+.truncate {
+  display: inline-block;
+  max-width: 150px; /* Adjust this value according to your preference */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  margin-top: auto;
+}
+
+.truncate:hover {
+  max-width: none;
+  white-space: normal;
 }
 
 footer {
-  background-color: #333;
-  color: #fff;
+  background-color: #33334d;
+  color: #d4d5e4;
   padding: 20px 0;
   text-align: center;
   margin-top: auto;
