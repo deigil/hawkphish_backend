@@ -15,11 +15,24 @@ class LinksAPI(APIView):
         if not link_url:
             return Response({"error": "Please provide a domainURL in the query parameters"}, status=400)
         try:
-            # Try to retrieve the link from the database
-            link = Links.objects.get(domainURL = link_url)
-            serializer = LinkSerializer(link)
-            return Response(serializer.data, status=200)
-        except Links.DoesNotExist:
+            # Retrieve link data based on the domainURL
+            link = updatedLink.objects.get(domainURL = link_url)
+            # Prepare response data (you can customize this based on your model structure)
+            link = {
+                "domainURL": link.domainURL,
+                "domainTitle": link.domainTitle,
+                "timeAccessed": link.timeAccessed,
+                "domainRating": link.domainRating,
+                "reasonNoHttps": link.reasonNoHttps,
+                "reasonShortened": link.reasonShortened,
+                "reasonAtSymbol": link.reasonAtSymbol,
+                "reasonBadExtension": link.reasonBadExtension,
+                "reasonRedirect": link.reasonRedirect,
+                "reasonDashes": link.reasonDashes,
+                "clicked_count": link.clicked_count
+            }
+            return Response(link, status=200)
+        except updatedLink.DoesNotExist:
             return Response({"message": "Link not found"}, status=400)
 
     def post(self, request):
