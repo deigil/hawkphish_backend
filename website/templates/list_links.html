@@ -1,46 +1,77 @@
-<!-- templates/website/links_list.html -->
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hawkphish Updated Links List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawkphish Database</title>
+    <link rel="stylesheet" href="{% static 'website/css/styles.css' %}">
 </head>
 <body>
-    <h1>Updated Links</h1>
+    <div class="wrapper">
+        <nav>
+            <div class="container">
+                <h1><a href="/">Hawkphish</a></h1>
+                <ul>
+                    <li><a href="/database">Database</a></li>
+                    <li><a href="/statistics">Statistics</a></li>
+                    <li><a href="/admin">Admin Login</a></li>
+                </ul>
+            </div>
+        </nav>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Domain URL</th>
-                <th>Domain Title</th>
-                <th>Time Accessed</th>
-                <th>Domain Rating</th>
-                <th>No HTTPS</th>
-                <th>Shortened</th>
-                <th>At Symbol</th>
-                <th>Bad Extension</th>
-                <th>Redirect</th>
-                <th>Dashes</th>
-                <th>Clicked Count</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for link in updatedLink %}
-                <tr>
-                    <td>{{ link.domainURL }}</td>
-                    <td>{{ link.domainTitle }}</td>
-                    <td>{{ link.timeAccessed }}</td>
-                    <td>{{ link.domainRating }}</td>
-                    <td>{{ link.reasonNoHttps }}</td>
-                    <td>{{ link.reasonShortened }}</td>
-                    <td>{{ link.reasonAtSymbol }}</td>
-                    <td>{{ link.reasonBadExtension }}</td>
-                    <td>{{ link.reasonRedirect }}</td>
-                    <td>{{ link.reasonDashes }}</td>
-                    <td>{{ link.clicked_count }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <section id="hero2">
+            <div class="container">
+                <h3>Updated Links</h3>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class "table-container">
+                <table class="database">
+                    <thead>
+                        <tr>
+                            <th>Domain URL</th>
+                            <th>Domain Title</th>
+                            <th>Time Accessed</th>
+                            <th>Domain Rating</th>
+                            <th>No HTTPS</th>
+                            <th>Shortened</th>
+                            <th>At Symbol</th>
+                            <th>Bad Extension</th>
+                            <th>Redirect</th>
+                            <th>Dashes</th>
+                            <th>Clicked Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for link in updatedLink %}
+                            <tr class="data">
+                                <!-- Custom truncation logic for domain URL -->
+                                <td>{{ link.domainURL|slice:":15" }}</td>
+                                <td>{{ link.domainTitle }}</td>
+                                <td>{{ link.timeAccessed }}</td>
+                                <td>{{ link.domainRating }}</td>
+                                <td>{{ link.reasonNoHttps }}</td>
+                                <td>{{ link.reasonShortened }}</td>
+                                <td>{{ link.reasonAtSymbol }}</td>
+                                <td>{{ link.reasonBadExtension }}</td>
+                                <td>{{ link.reasonRedirect }}</td>
+                                <td>{{ link.reasonDashes }}</td>
+                                <td>{{ link.clicked_count }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Hawkphish. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

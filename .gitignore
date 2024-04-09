@@ -13,3 +13,4 @@ checks.sh
 server.log
 webhook.log
 venv/
+database/migrations

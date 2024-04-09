@@ -8,14 +8,23 @@ body {
   background-color: #f0f0f0;
 }
 
-.wrapper{
-  flex-grow: 1; /* Grow to fill remaining vertical space */
+.wrapper {
+  flex-grow: 1;
+}
+
+/* For smaller screens */
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 100%; /* Adjust container width for smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
 }
 
 .container {
-  max-width: 1200px;
+  width: 90%; /* Adjust container width to fit screen */
   margin: 0 auto;
   padding: 0 20px;
+  overflow-x: auto; /* Add horizontal scrolling if needed */
 }
 
 nav {
@@ -53,9 +62,9 @@ nav a:hover {
   text-align: center;
 }
 
-#hero h2 {
-  font-size: 36px;
-  color: #333;
+#hero2 {
+  padding: 25px 0;
+  text-align: center;
 }
 
 #features {
@@ -63,9 +72,39 @@ nav a:hover {
   text-align: center;
 }
 
+.table-container {
+  width: calc(100% - 25px);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.database {
+  width: 100%;
+  max-width: 100%; /* Ensure table stays within container */
+  border-collapse: collapse;
+}
+
+
+.data {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* Show full text on hover */
+.data:hover {
+  white-space: normal; /* Display full text on hover */
+  overflow: visible;
+  text-overflow: initial;
+}
+
 footer {
   background-color: #333;
   color: #fff;
   padding: 20px 0;
   text-align: center;
+  margin-top: auto;
 }
