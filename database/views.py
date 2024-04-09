@@ -21,7 +21,7 @@ class LinksAPI(APIView):
             link = {
                 "domainURL": link.domainURL,
                 "domainTitle": link.domainTitle,
-                "timeAccessed": link.timeAccessed.strftime("%a %b %d %Y %H:%M:%S GMT%z (%Z)"),
+                "timeAccessed": link.timeAccessed,
                 "domainRating": link.domainRating,
                 "reasonNoHttps": link.reasonNoHttps,
                 "reasonShortened": link.reasonShortened,
