@@ -56,7 +56,26 @@ class LinksAPI(APIView):
             # If an entry exists, increment clicked_count by 1
             existing_link.clicked_count += 1
             existing_link.timeAccessed = data['timeAccessed']
+
+            link = {
+                "domainURL": updatedLink.domainURL,
+                "domainTitle": updatedLink.domainTitle,
+                "timeAccessed": updatedLink.timeAccessed,
+                "domainRating": updatedLink.domainRating,
+                "reasonNoHttps": updatedLink.reasonNoHttps,
+                "reasonShortened": updatedLink.reasonShortened,
+                "reasonAtSymbol": updatedLink.reasonAtSymbol,
+                "reasonBadExtension": updatedLink.reasonBadExtension,
+                "reasonRedirect": updatedLink.reasonRedirect,
+                "reasonDashes": updatedLink.reasonDashes,
+                "clicked_count": updatedLink.clicked_count,
+                "message": "Link exists!"
+            }
+
             existing_link.save()
+
+            return Response(link, status=201)
+           
         else:
             # If no entry exists, create a new one
             link = updatedLink(
