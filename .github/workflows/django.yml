@@ -20,4 +20,4 @@ jobs:
           host: ${{ secrets.ELASTIC_IP }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          stop_script: cd /home/ubuntu/djangobackend && ./checks.sh
+          script: cd /home/ubuntu/djangobackend && ./checks.sh
