@@ -68,8 +68,7 @@ class LinksAPI(APIView):
                 "reasonBadExtension": updatedLink.reasonBadExtension,
                 "reasonRedirect": updatedLink.reasonRedirect,
                 "reasonDashes": updatedLink.reasonDashes,
-                "clicked_count": updatedLink.clicked_count,
-                "message": "Link exists!"
+                "clicked_count": updatedLink.clicked_count
             }
 
             existing_link.save()
