@@ -71,8 +71,8 @@ class LinksAPI(APIView):
                 "clicked_count": updatedLink.clicked_count
             }
 
-            linkToBeSent = json.loads(link.body)
-            print(linkToBeSent)
+            # linkToBeSent = json.loads(link.body)
+            # print(linkToBeSent)
 
             existing_link.save()
 
