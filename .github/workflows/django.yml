@@ -1,7 +1,7 @@
 name: Deploy
 
 on:
-  push:
+  merge:
     branches:
       - main
 
@@ -20,7 +20,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           stop_script: cd /home/ubuntu/djangobackend && ./checks.sh
-<<<<<<< HEAD
-=======
-
->>>>>>> 9009f25d3f4c79f0d5f5a2f96798a07c213ccda1
+          
