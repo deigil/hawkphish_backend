@@ -1,12 +1,13 @@
 name: Deploy
 
 on:
-  merge:
-    branches:
-      - main
+  pull_request:
+    types:
+      - closed
 
 jobs:
   deploy:
+    if: github.event.pull_request.merged && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
 
     steps:
@@ -20,4 +21,3 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           stop_script: cd /home/ubuntu/djangobackend && ./checks.sh
-          
