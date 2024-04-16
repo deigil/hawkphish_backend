@@ -57,19 +57,9 @@ class LinksAPI(APIView):
             existing_link.clicked_count += 1
             existing_link.timeAccessed = data['timeAccessed']
 
-            link = {
-                "domainURL": updatedLink.domainURL,
-                "domainTitle": updatedLink.domainTitle,
-                "timeAccessed": updatedLink.timeAccessed,
-                "domainRating": updatedLink.domainRating,
-                "reasonNoHttps": updatedLink.reasonNoHttps,
-                "reasonShortened": updatedLink.reasonShortened,
-                "reasonAtSymbol": updatedLink.reasonAtSymbol,
-                "reasonBadExtension": updatedLink.reasonBadExtension,
-                "reasonRedirect": updatedLink.reasonRedirect,
-                "reasonDashes": updatedLink.reasonDashes,
-                "clicked_count": updatedLink.clicked_count
-            }
+            # Serialize the existing link data
+            serializer = LinkSerializer(existing_link)
+            return Response(serializer.data, status=200)
 
             # linkToBeSent = json.loads(link.body)
             # print(linkToBeSent)
@@ -95,7 +85,4 @@ class LinksAPI(APIView):
             )
             link.save()
 
-            # return Response({"message": "Link added successfully"}, status=201)
-
-        # Return success response
-        return Response(link, status=201)
+            return Response({"message": "Link added successfully"}, status=201)
