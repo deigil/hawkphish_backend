@@ -71,11 +71,13 @@ class LinksAPI(APIView):
                 "clicked_count": updatedLink.clicked_count
             }
 
+            # linkToBeSent = json.loads(link.body)
+            # print(linkToBeSent)
+
             existing_link.save()
 
-            # return Response(link, status=201)
-
-
+            
+           
         else:
             # If no entry exists, create a new one
             link = updatedLink(
@@ -93,5 +95,7 @@ class LinksAPI(APIView):
             )
             link.save()
 
+            # return Response({"message": "Link added successfully"}, status=201)
+
         # Return success response
-        return Response({"message": "Link added successfully"}, status=201)
+        return Response(link, status=201)
