@@ -9,7 +9,7 @@ __pycache__/
 __pycache__/
 media/
 checks.sh
-server.log
+server*
 git.log
 venv/
 database/migrations
