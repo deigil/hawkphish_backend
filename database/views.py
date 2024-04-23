@@ -44,12 +44,6 @@ class LinksAPI(APIView):
         except json.JSONDecodeError:
             return Response({"error": "Invalid JSON data"}, status=400)
 
-        # Check if required fields are present
-        # required_fields = ['domainURL', 'domainTitle', 'timeAccessed', 'domainRating']
-        # for field in required_fields:
-        #     if field not in data:
-        #         return Response({"error": f"Missing required field: {field}"}, status=400)
-
         existing_link = updatedLink.objects.filter(domainURL=data['domainURL']).first()
 
         if existing_link:
@@ -59,14 +53,9 @@ class LinksAPI(APIView):
 
             # Serialize the existing link data
             serializer = LinkSerializer(existing_link)
-            return Response(serializer.data, status=200)
-
-            # linkToBeSent = json.loads(link.body)
-            # print(linkToBeSent)
-
             existing_link.save()
-
             
+            # return Response(serializer.data, status=200)
            
         else:
             # If no entry exists, create a new one
