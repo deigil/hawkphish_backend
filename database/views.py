@@ -55,7 +55,7 @@ class LinksAPI(APIView):
             serializer = LinkSerializer(existing_link)
             existing_link.save()
             
-            # return Response(serializer.data, status=200)
+            return Response(serializer.data, status=200)
            
         else:
             # If no entry exists, create a new one
